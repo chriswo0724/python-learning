@@ -1,0 +1,19 @@
+argparse is a standard module of python which parses optparse-inspired command-line parameters
+argparse是python标准模块中用来处理命令行参数的库
+    - handles both optional and positional arguments
+    - produces highly informative usage messages
+    - supports parsers that dispatch to sub-parsers
+using steps:
+1.import argparse 导入模块
+2.parser = argparse.ArgumentParser() 选项创建一个解析对象
+3.parser.add_argument() 向该对象中添加要关注的命令行参数和选项
+4.parser.parser.args() 对参数进行解析
+###argparse example###
+sum integers from the command-line and write the result to a file:
+parser = argparse.ArgumentParser(description = 'sum the integers at the command line')
+parser.add_argument('integers', metavar = 'int', nargs = '+', type = int, help = 'an integer to be summed')
+parser.add_argument('--log', default=sys.stdout, type=argparse.FileType('w'),help='the file where the sum should be written')
+args = parser.parse_args()
+args.log.write('%s' % sum(args.integers))
+args.log.close()
+
